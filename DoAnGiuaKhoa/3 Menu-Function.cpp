@@ -194,7 +194,6 @@ void DocFileMH_Lop_SV(MH ds_monHoc[], int& nMonHoc, Lop ds_lopHoc[], int& nLopHo
 	getline(filein, ds_lopHoc[nLopHoc].TenLop, L',');
 	filein >> ds_lopHoc[nLopHoc].NamNhapHoc; filein.ignore();
 	KhoiTaoListSinhVien(ds_lopHoc[nLopHoc].ds_sv);
-	filein.ignore();
 	while (!filein.eof())
 	{
 		SV sv;
@@ -230,7 +229,6 @@ void DocFileMH_Lop_SV(MH ds_monHoc[], int& nMonHoc, Lop ds_lopHoc[], int& nLopHo
 	getline(filein, ds_lopHoc[nLopHoc].TenLop, L',');
 	filein >> ds_lopHoc[nLopHoc].NamNhapHoc; filein.ignore();
 	KhoiTaoListSinhVien(ds_lopHoc[nLopHoc].ds_sv);
-	filein.ignore();
 	while (!filein.eof())
 	{
 		SV sv;
@@ -262,6 +260,40 @@ void DocFileMH_Lop_SV(MH ds_monHoc[], int& nMonHoc, Lop ds_lopHoc[], int& nLopHo
 	}
 	nLopHoc++; filein.close();
 	wcout << "\t\t\t\tXong";
+	SetColorPro(8);
+	wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
+	_getch();
+}
+
+void XuatFile(MH ds_monHoc[], int nMonHoc, Lop ds_lopHoc[], int nLopHoc) {
+	wofstream fileiout("DSMHout.txt"); //ghi file môn trước
+	for (size_t i = 0; i < nMonHoc; i++)
+	{
+		fileiout << ds_monHoc[i].MAMH << ',';
+		fileiout << ds_monHoc[i].TENMH << L',';
+		fileiout << ds_monHoc[i].STCLT << ',';
+		fileiout << ds_monHoc[i].STCTH << '\n';
+	}
+	fileiout.close();
+	wcout << L"\n\t\t\Xuất file danh sách môn học vào DSMHout.txt!";
+
+	for (size_t i = 0; i < nLopHoc; i++)
+	{
+		wstring nameFile = L"DS" + ds_lopHoc[i].TenLop + L"out.txt";
+		wofstream fileout(nameFile); //ghi file lớp 
+		fileout << ds_lopHoc[i].MaLop << "," << ds_lopHoc[i].TenLop << "," << ds_lopHoc[i].NamNhapHoc << "\n";
+		for (NODES* k = ds_lopHoc[i].ds_sv.pHead; k != NULL; k=k->pNext)
+		{
+			fileout << k->sv.MASV << "," << k->sv.Ho << "," << k->sv.Ten << "," << k->sv.Phai << "," << k->sv.SDT;
+			for (NODED* d = k->sv.ds_diem.pHead; d != NULL; d=d->pNext)
+			{
+				fileout << "," << d->diem.MAMH << "," << d->diem.Lan << "," << d->diem.diem;
+			}
+			fileout << "\n";
+		}
+		fileout.close();
+		wcout << L"\n\t\t\Xuất file danh sách lớp học vào "<<nameFile <<"!";
+	}
 	SetColorPro(8);
 	wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
 	_getch();
@@ -640,10 +672,12 @@ void Menu() {
 						}
 						else
 						{
-							wcout << L"\n\t\t\tHọc sinh: " << k->sv.Ho << " " << k->sv.Ten << "     " << L" Lớp: " << ds_lopHoc[i].TenLop;
+							SetColorPro(3); wcout << L"\n\t\t\tHọc sinh: "; SetColorPro(7); wcout << k->sv.Ho << " " << k->sv.Ten << "      "; SetColorPro(3); wcout << L" Lớp: "; SetColorPro(7); wcout << ds_lopHoc[i].TenLop;
 							for (NODED* u = k->sv.ds_diem.pHead; u != NULL; u = u->pNext)
 							{
-								wcout << L"\n\t\t\t\t•Mã môn: " << u->diem.MAMH << L"  •Lần: " << u->diem.Lan << L" •Điểm: " << u->diem.diem;
+								SetColorPro(9); wcout << L"\n\t\t\t\t• Mã môn: "; SetColorPro(7); wcout << u->diem.MAMH;
+								SetColorPro(9); wcout << L"  • Lần thi: "; SetColorPro(7); wcout << u->diem.Lan;
+								SetColorPro(9); wcout << L" • Điểm: "; SetColorPro(7); wcout << u->diem.diem;
 							}
 							break;
 						}
@@ -662,6 +696,21 @@ void Menu() {
 		}
 		case 10: {
 			DocFileMH_Lop_SV(ds_monHoc,nMonHoc,ds_lopHoc,nLopHoc);
+			break;
+		}
+		case 11: {
+			if (nLopHoc == 0 || nMonHoc == 0)
+			{
+				SetColorPro(4);
+				wcout << L"\t\t\t\tChưa có lớp học nào hoặc môn nào cả!";
+				SetColorPro(8);
+				wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
+				_getch(); break;
+			}
+			else
+			{
+				XuatFile(ds_monHoc, nMonHoc, ds_lopHoc, nLopHoc);
+			}
 			break;
 		}
 		case 0: { //thoát, thu hồi vùng nhớ
