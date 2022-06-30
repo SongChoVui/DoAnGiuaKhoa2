@@ -4,6 +4,8 @@ bool checkIndifferentClassCode(Lop ds_lopHoc[], int nLopHoc);//kiểm tra các m
 
 void PrintAllExistClass(Lop ds_lopHoc[], int nLopHoc);//in danh sách nhỏ lớp hiện có vs ID
 
+void PrintAllExistClass2(Lop ds_lopHoc[], int nLopHoc); //in danh sach nhỏ tên lớp và năm nhập học
+
 void NhapLop(Lop ds_lopHoc[], int& nLopHoc); // thêm lớp học thủ công
 
 bool IsStudentIDValid(Lop ds_lopHoc[], int nLophoc, wstring MASV); //kiểm tra xem ID sinh viên đã tồn tại chưa

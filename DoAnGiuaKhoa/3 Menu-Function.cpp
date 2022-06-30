@@ -43,6 +43,33 @@ void PrintAllExistClass(Lop ds_lopHoc[], int nLopHoc) {
 	}
 }
 
+void PrintAllExistClass2(Lop ds_lopHoc[], int nLopHoc) {
+	SetColorPro(10); wcout << L"\t\t\tDanh sách lớp học hiện tại :";
+	if (nLopHoc == 0)
+	{
+		wcout << L" Chưa tồn tại lớp nào cả!";
+	}
+	else
+	{
+		SetColorPro(8);
+		int index = 1;
+		wcout << "\n\t";
+		for (size_t i = 0; i < nLopHoc; i++)
+		{
+			if (index == 6) // thêm màu mè thui
+			{
+				wcout << "\n\t";
+				index = 1;
+			}
+			else
+			{
+				index++;
+			}
+			wcout << L"\t" << ds_lopHoc[i].TenLop << "(" << ds_lopHoc[i].NamNhapHoc << ")";
+		}
+	}
+}
+
 void NhapLop(Lop ds_lopHoc[], int& nLopHoc) {// thêm lớp học thủ công
 	wcout << "\n";
 	SetColorPro(15);
@@ -185,7 +212,7 @@ void Menu() {
 			else
 			{
 				PrintAllExistClass(ds_lopHoc,nLopHoc);
-				NhapLop(ds_lopHoc, nLopHoc);
+				NhapLop(ds_lopHoc, nLopHoc); //có kiểm tra trùng id
 			}
 			break;
 		}
@@ -199,8 +226,9 @@ void Menu() {
 				_getch();
 				break;
 			}
+			PrintAllExistClass(ds_lopHoc, nLopHoc);
 			wstring maLop;
-			wcout << L"\t\t\t\tNhập mã lớp mà bạn muốn thêm sinh viên: ";
+			wcout << L"\n\t\t\t\tNhập mã lớp mà bạn muốn thêm sinh viên: ";
 			getline(wcin, maLop);
 			for (size_t i = 0; i < nLopHoc; i++)
 			{
@@ -249,6 +277,7 @@ void Menu() {
 				wcout << L"\t\t\tChưa có lớp học nào trong danh sách!";	Sleep(3000);
 				break;
 			}
+			PrintAllExistClass2(ds_lopHoc, nLopHoc);
 			int niemKhoa;
 			wcout << L"\t\t\t\tNhập niên khóa mà bạn uống in dssv: ";
 			wcin >> niemKhoa; wcin.ignore();
