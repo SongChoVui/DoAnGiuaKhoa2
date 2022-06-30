@@ -21,6 +21,6 @@ void InDSMonHoc(MH ds_monHoc[], int nMonhoc);//in danh sách các môn học
 
 bool IsAnySBOnceTime(SV sv);//kiểm tra xem sinh viên này có bất kì môn nào thi 1 lần không để in sv ra trong câu 8
 
-
+void DocFileMH_Lop_SV(MH, int&,Lop, int&);
 
 void Menu(); // menu

@@ -176,6 +176,97 @@ bool IsAnySBOnceTime(SV sv) {
 	return false;
 }
 
+void DocFileMH_Lop_SV(MH ds_monHoc[], int& nMonHoc, Lop ds_lopHoc[], int& nLopHoc)
+{
+	wifstream filein("DSMH.txt"); //dọc môn trước
+	while (!filein.eof())
+	{
+		getline(filein, ds_monHoc[nMonHoc].MAMH,L',');
+		getline(filein, ds_monHoc[nMonHoc].TENMH, L',');
+		filein >> ds_monHoc[nMonHoc].STCLT; filein.ignore(); //dọc số sẽ k tự lướt qua dấu phẩy
+		filein >> ds_monHoc[nMonHoc].STCTH; filein.ignore();
+		nMonHoc++;
+	}
+	filein.close();
+
+	filein.open("DSSVLopSE.txt");//doc dssv lớp SE
+	getline(filein, ds_lopHoc[nLopHoc].MaLop, L',');
+	getline(filein, ds_lopHoc[nLopHoc].TenLop, L',');
+	filein >> ds_lopHoc[nLopHoc].NamNhapHoc; filein.ignore();
+	KhoiTaoListSinhVien(ds_lopHoc[nLopHoc].ds_sv);
+	filein.ignore();
+	while (!filein.eof())
+	{
+		SV sv;
+		getline(filein, sv.MASV, L',');
+		getline(filein, sv.Ho, L',');
+		if (sv.Ho == L"") //thoát, wfile bị lỗi phải chạy kiểu này để thoát ;))
+		{
+			break;
+		}
+		getline(filein, sv.Ten, L',');
+		getline(filein, sv.Phai, L',');
+		getline(filein, sv.SDT, L',');
+		KhoiTaoListDiem(sv.ds_diem);
+		DIEM diem;
+		getline(filein, diem.MAMH, L',');
+		filein >> diem.Lan; filein.ignore();
+		filein >> diem.diem; filein.ignore();
+		NODED* p = KhoiTaoNODEDiem(diem);
+		ThemVaoCuoi(sv.ds_diem, p);
+		DIEM diem2;
+		getline(filein, diem2.MAMH, L','); 
+		filein >> diem2.Lan; filein.ignore();
+		filein >> diem2.diem; 
+		NODED* p2 = KhoiTaoNODEDiem(diem2);
+		ThemVaoCuoi(sv.ds_diem, p2);
+		NODES* Nsv = KhoiTaoNodeSinhVien(sv);
+		ThemVaoCuoi(ds_lopHoc[nLopHoc].ds_sv,Nsv);
+		filein.ignore();	
+	}
+	nLopHoc++; filein.close();
+	filein.open("DSSVLopDM.txt");//doc dssv lớp DM
+	getline(filein, ds_lopHoc[nLopHoc].MaLop, L',');
+	getline(filein, ds_lopHoc[nLopHoc].TenLop, L',');
+	filein >> ds_lopHoc[nLopHoc].NamNhapHoc; filein.ignore();
+	KhoiTaoListSinhVien(ds_lopHoc[nLopHoc].ds_sv);
+	filein.ignore();
+	while (!filein.eof())
+	{
+		SV sv;
+		getline(filein, sv.MASV, L',');
+		getline(filein, sv.Ho, L',');
+		if (sv.Ho == L"") //thoát, wfile bị lỗi phải chạy kiểu này để thoát ;))
+		{
+			break;
+		}
+		getline(filein, sv.Ten, L',');
+		getline(filein, sv.Phai, L',');
+		getline(filein, sv.SDT, L',');
+		KhoiTaoListDiem(sv.ds_diem);
+		DIEM diem;
+		getline(filein, diem.MAMH, L',');
+		filein >> diem.Lan; filein.ignore();
+		filein >> diem.diem; filein.ignore();
+		NODED* p = KhoiTaoNODEDiem(diem);
+		ThemVaoCuoi(sv.ds_diem, p);
+		DIEM diem2;
+		getline(filein, diem2.MAMH, L',');
+		filein >> diem2.Lan; filein.ignore();
+		filein >> diem2.diem;
+		NODED* p2 = KhoiTaoNODEDiem(diem2);
+		ThemVaoCuoi(sv.ds_diem, p2);
+		NODES* Nsv = KhoiTaoNodeSinhVien(sv);
+		ThemVaoCuoi(ds_lopHoc[nLopHoc].ds_sv, Nsv);
+		filein.ignore();
+	}
+	nLopHoc++; filein.close();
+	wcout << "\t\t\t\tXong";
+	SetColorPro(8);
+	wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
+	_getch();
+}
+
 void Menu() {
 	ConsoleSetting();
 	MH ds_monHoc[MaxSoLuongMonHoc];
@@ -199,8 +290,8 @@ void Menu() {
 		wcout << L"\n\t\t\t\t•8.In bảng điểm môn học của 1 lớp theo 1 lần thi";
 		wcout << L"\n\t\t\t\t•9.Phiếu điểm in bảng điểm môn học của 1 sinh viên có mã bất kỳ";
 		wcout << L"\n\t\t\t\t•0.Thoát chương trình";
-		wcout << L"\n\t\t\t\t•Input File: nhập môn, lớp sinh viên.(DSMH.txt,DSSVLopSE,DSSVLopDM)";
-		wcout << L"\n\t\t\t\t•Output File: xuất môn, lớp sinh viên.(DSMHout.txt,DSSV+tên lớp+out.txt)";
+		wcout << L"\n\t\t\t\t•10.Input File: nhập môn, lớp sinh viên.(DSMH.txt,DSSVLopSE,DSSVLopDM)";
+		wcout << L"\n\t\t\t\t•11.Output File: xuất môn, lớp sinh viên.(DSMHout.txt,DSSV+tên lớp+out.txt)";
 		wcout << L"\n\t\t\t\t♦====================================================♦";
 		SetColorPro(7); wcout << L"\n\t\t\t\tNhập vào lựa chọn của bạn: "; wcin >> luachon; wcin.ignore();
 		switch (luachon)
@@ -259,7 +350,7 @@ void Menu() {
 					KhoiTaoListDiem(sv.ds_diem);
 					NODES* p = KhoiTaoNodeSinhVien(sv);
 					ThemVaoCuoi(ds_lopHoc[i].ds_sv, p);
-					wcout << "\t\t\t\tDONE"; Sleep(1000);
+					wcout << "\t\t\t\tDONE"; 
 					Sleep(1000);
 					break;
 				}
@@ -311,11 +402,15 @@ void Menu() {
 			if (nLopHoc == 0) // chưa có lớp học nào cả
 			{
 				SetColorPro(4);
-				wcout << L"\t\t\tChưa có lớp học nào trong danh sách!";	Sleep(3000);
+				wcout << L"\t\t\tChưa có lớp học nào trong danh sách!";
+				SetColorPro(8);
+				wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
+				_getch();
 				break;
 			}
+			PrintAllExistClass(ds_lopHoc, nLopHoc);
 			wstring maLopHoc;
-			wcout << L"\t\t\tNhập mã lớp học mà bạn muốn in dssv theo alphabet: ";
+			wcout << L"\n\t\t\tNhập mã lớp học mà bạn muốn in dssv theo alphabet: ";
 			getline(wcin, maLopHoc);
 			bool isFinded = false;
 			for (int i = 0; i < nLopHoc; i++) {
@@ -323,7 +418,14 @@ void Menu() {
 				{
 					SortClassAccAlphabet(ds_lopHoc[i].ds_sv);
 					isFinded = true;
-					wcout << "\t\t\t\tXong!";
+					wcout << "\t\t\t\tXong!\n";
+					int index = 1;
+					for (NODES* k = ds_lopHoc[i].ds_sv.pHead; k != NULL; k = k->pNext)
+					{
+						SetColorPro(10);   wcout << L"\t\t\tThông tin sinh viên thứ " << index++ << L" lớp " << ds_lopHoc[i].TenLop << " :";
+						SetColorPro(7); wcout << k->sv << endl;
+					}
+					break;
 				}
 			}
 			if (isFinded == false)
@@ -460,8 +562,9 @@ void Menu() {
 				wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
 				_getch(); break;
 			}
+			PrintAllExistClass(ds_lopHoc, nLopHoc);
 			wstring maLopHoc;
-			wcout << L"\t\t\tNhập mã lớp học mà bạn muốn in danh sách môn 1 lần thi: ";
+			wcout << L"\n\t\t\tNhập mã lớp học mà bạn muốn in danh sách môn 1 lần thi: ";
 			getline(wcin, maLopHoc);
 			bool isFinded = false;
 			for (int i = 0; i < nLopHoc; i++) {
@@ -475,17 +578,17 @@ void Menu() {
 						if (IsAnySBOnceTime(k->sv) == true)
 						{
 							if (isFinded == false) isFinded = true;
-							SetColorPro(10);   wcout << L"\n\t\t\tThông tin sinh viên thứ " << index++ << " :";
-							SetColorPro(7);
-							wcout << L"\n\t\t\t\tMã sinh viên:" << k->sv.MASV;
-							wcout << L"\n\t\t\t\tHọ và tên:" << k->sv.Ho << " " << k->sv.Ten;
-							wcout << L"\n\t\t\t\tGiới tính:" << k->sv.Phai;
-							wcout << L"\n\t\t\t\tSố điện thoại:" << k->sv.SDT;
+							SetColorPro(10);wcout << L"\n\t\t\tThông tin sinh viên thứ " << index++ << " :";
+							SetColorPro(3); wcout << L"\n\t\t\t\tMã sinh viên: "; SetColorPro(7); wcout << k->sv.MASV;
+							SetColorPro(3); wcout << L"\n\t\t\t\tHọ và tên: "; SetColorPro(7); wcout << k->sv.Ho << " " << k->sv.Ten;
+							SetColorPro(3); wcout << L"\n\t\t\t\tGiới tính: "; SetColorPro(7); wcout << k->sv.Phai; SetColorPro(3); wcout << L"\tSố điện thoại:"; SetColorPro(7); wcout << k->sv.SDT;
 							for (NODED* u = k->sv.ds_diem.pHead; u != NULL; u = u->pNext)
 							{
 								if (u->diem.Lan == 1)
 								{
-									wcout << L"\n\t\t\t\t•Mã môn: " << u->diem.MAMH << L"  •Lần: " << u->diem.Lan << L" •Điểm: " << u->diem.diem;
+									SetColorPro(9); wcout << L"\n\t\t\t\t• Mã môn: "; SetColorPro(7); wcout << u->diem.MAMH;
+									SetColorPro(9); wcout << L"  • Lần thi: "; SetColorPro(7); wcout << u->diem.Lan;
+									SetColorPro(9); wcout << L" • Điểm: "; SetColorPro(7); wcout << u->diem.diem;
 								}
 							}
 						}
@@ -555,6 +658,10 @@ void Menu() {
 			SetColorPro(8);
 			wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
 			_getch();
+			break;
+		}
+		case 10: {
+			DocFileMH_Lop_SV(ds_monHoc,nMonHoc,ds_lopHoc,nLopHoc);
 			break;
 		}
 		case 0: { //thoát, thu hồi vùng nhớ

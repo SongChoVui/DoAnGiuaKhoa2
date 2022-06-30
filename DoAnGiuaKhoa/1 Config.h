@@ -4,6 +4,7 @@
 #include<fstream>
 #include<string>
 #include<conio.h>
+#include<vector> //lúc đổi string sang wstring cần vector
 //language
 #include<io.h>
 #include<fcntl.h>

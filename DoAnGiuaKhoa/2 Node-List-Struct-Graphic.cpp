@@ -17,8 +17,7 @@ NODED* KhoiTaoNODEDiem(DIEM diem) {
 wostream& operator<<(wostream& os, SV sv) { //nhập sinh viên
 	SetColorPro(3); wcout << L"\n\t\t\t\tMã sinh viên: "; SetColorPro(7); wcout << sv.MASV;
 	SetColorPro(3); wcout << L"\n\t\t\t\tHọ và tên: "; SetColorPro(7); wcout << sv.Ho << " " << sv.Ten;
-	SetColorPro(3); wcout << L"\n\t\t\t\tGiới tính: "; SetColorPro(7); wcout << sv.Phai;
-	SetColorPro(3); wcout << L"\n\t\t\t\tSố điện thoại:"; SetColorPro(7); wcout << sv.SDT;
+	SetColorPro(3); wcout << L"\n\t\t\t\tGiới tính: "; SetColorPro(7); wcout << sv.Phai; SetColorPro(3); wcout << L"\tSố điện thoại:"; SetColorPro(7); wcout << sv.SDT;
 	if (sv.ds_diem.pHead == NULL)
 	{
 		SetColorPro(4); wcout << L"\n\t\t\t\tSinh viên chưa được nhập điểm!";

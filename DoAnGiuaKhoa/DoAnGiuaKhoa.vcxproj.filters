@@ -27,18 +27,18 @@
     <ClCompile Include="3 Menu-Function.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="DSSVLopDM.txt">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="AutoFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="DSSVLopSE.txt">
+    <Text Include="DSMH.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="DSMH.txt">
+    <Text Include="DSSVLopDM.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="DSSVLopSE.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
