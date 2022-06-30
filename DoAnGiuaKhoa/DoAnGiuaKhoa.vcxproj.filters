@@ -29,7 +29,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="AutoFile.txt">
+    <Text Include="Đề.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="DSMH.txt">
