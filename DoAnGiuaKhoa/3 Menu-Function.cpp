@@ -188,7 +188,7 @@ void Menu() {
 	{
 		system("cls");
 		SetColorPro(8);
-		wcout << L"\n\t\t\t\t♦==============="; SetColorPro(11); wcout << L" ☺ Quản lý sinh viên ☺"; SetColorPro(8); wcout << L" ===============♦";
+		wcout << L"\t\t\t\t♦==============="; SetColorPro(11); wcout << L" ☺ Quản lý sinh viên ☺"; SetColorPro(8); wcout << L" ===============♦";
 		wcout << L"\n\t\t\t\t•1.Nhập lớp.";
 		wcout << L"\n\t\t\t\t•2.Nhập sinh viên của lớp.";
 		wcout << L"\n\t\t\t\t•3.Xuất danh sách sinh viên theo niên khóa";
@@ -199,6 +199,8 @@ void Menu() {
 		wcout << L"\n\t\t\t\t•8.In bảng điểm môn học của 1 lớp theo 1 lần thi";
 		wcout << L"\n\t\t\t\t•9.Phiếu điểm in bảng điểm môn học của 1 sinh viên có mã bất kỳ";
 		wcout << L"\n\t\t\t\t•0.Thoát chương trình";
+		wcout << L"\n\t\t\t\t•Input File: nhập môn, lớp sinh viên.(DSMH.txt,DSSVLopSE,DSSVLopDM)";
+		wcout << L"\n\t\t\t\t•Output File: xuất môn, lớp sinh viên.(DSMHout.txt,DSSV+tên lớp+out.txt)";
 		wcout << L"\n\t\t\t\t♦====================================================♦";
 		SetColorPro(7); wcout << L"\n\t\t\t\tNhập vào lựa chọn của bạn: "; wcin >> luachon; wcin.ignore();
 		switch (luachon)
@@ -279,7 +281,7 @@ void Menu() {
 			}
 			PrintAllExistClass2(ds_lopHoc, nLopHoc);
 			int niemKhoa;
-			wcout << L"\t\t\t\tNhập niên khóa mà bạn uống in dssv: ";
+			wcout << L"\n\t\t\t\tNhập niên khóa mà bạn uống in dssv: ";
 			wcin >> niemKhoa; wcin.ignore();
 			bool isFinded = false;
 			for (int i = 0; i < nLopHoc; i++)

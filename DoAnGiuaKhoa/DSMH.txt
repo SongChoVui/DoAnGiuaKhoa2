@@ -1,0 +1,5 @@
+VOV,Vovinam,2,2
+SE,Ky thuat phan mem,4,7
+AI,Tri tue nhan tao,5,6
+DM,Digital Marketing,4,6
+SS,Kinh te,6,7

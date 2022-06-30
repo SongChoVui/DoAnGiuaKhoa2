@@ -1,0 +1,7 @@
+SS, Kinh te quoc dan, 2022
+SS170XXX, Mew mew, Mew, Nam, 665678, VOV, 2, 7.5, SS, 1, 9
+SS137084, Gau gau, Gau, Nam, 123329, VOV, 1, 6, DM, 1, 9
+SS157084, A hi, Hi, Nam, 41487329, SS, 1, 9, DM, 1, 8
+SS132134, Holy, Cow, Nam, 1234115, VOV, 1, 7, DM, 1, 8
+SS132134, Nguyen Sieu, Nhan, Nam, 4234436, VOV, 1, 9, DM, 1, 9
+
