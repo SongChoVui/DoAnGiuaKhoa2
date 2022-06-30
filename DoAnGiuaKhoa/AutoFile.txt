@@ -1,0 +1,27 @@
+﻿1. Quản lý điểm sinh viên: Ta tổ chức các danh sách sau: 
+- Danh sách môn học: danh sách tuyến tính (MAMH, TENMH, STCLT
+
+(số tín chỉ lý thuyết), STCTH)
+- Danh sách lớp: danh sách tuyến tính (MALOP, TENLOP, Năm nhập 
+
+học, con trỏ): con trỏ sẻ trỏ đến danh sách sinh viên thuộc lớp đó.
+- Danh sách sinh viên: danh sách các con trỏ liên kết (MASV, HO, TEN, 
+
+ PHAI, SODT, con trỏ): con trỏ sẻ trỏ đến danh sách điểm các môn của 
+
+sinh viên đó
+- Danh sách điểm: danh sách các con trỏ liên kết (MAMH, LAN, DIEM)
+
+Chương trình có các chức năng sau: 
+1-> Nhập lớp
+2-> Nhập sinh viên của lớp
+3-> Xuất danh sách sinh viên theo niên khóa 
+4-> In DSSV của 1 lớp theo thứ tự alphabet tăng dần của tên + họ
+5-> Nhập môn học
+6-> In DS môn học
+7-> Nhập điểm
+8-> In bảng điểm môn học của 1 lớp theo 1 lần thi
+9-> Phiếu điểm in bảng điểm môn học của 1 sinh viên có mã bất kỳ
+Lưu ý: Chương trình cho phép lưu các danh sách vào file; Kiểm tra các 
+
+điều kiện khi nhập làm dữ liệu bị sai.
