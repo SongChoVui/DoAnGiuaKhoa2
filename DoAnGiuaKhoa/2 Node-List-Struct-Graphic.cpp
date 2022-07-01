@@ -14,7 +14,7 @@ NODED* KhoiTaoNODEDiem(DIEM diem) {
 	p->pNext = NULL;
 	return p;
 }
-wostream& operator<<(wostream& os, SV sv) { //nhập sinh viên
+wostream& operator<<(wostream& os, SV sv) { //xuất sinh viên
 	SetColorPro(3); wcout << L"\n\t\t\t\tMã sinh viên: "; SetColorPro(7); wcout << sv.MASV;
 	SetColorPro(3); wcout << L"\n\t\t\t\tHọ và tên: "; SetColorPro(7); wcout << sv.Ho << " " << sv.Ten;
 	SetColorPro(3); wcout << L"\n\t\t\t\tGiới tính: "; SetColorPro(7); wcout << sv.Phai; SetColorPro(3); wcout << L"\tSố điện thoại:"; SetColorPro(7); wcout << sv.SDT;
