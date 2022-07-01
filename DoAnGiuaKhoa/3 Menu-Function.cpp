@@ -142,7 +142,7 @@ bool checkIndifferentSubjectCode(MH ds_monHoc[], int nMonHoc) {
 void NhapMonHoc(MH ds_monHoc[], int& nMonHoc) {
 	do
 	{
-		wcout << L"\t\t\tNhập vào mã môn học : "; getline(wcin, ds_monHoc[nMonHoc].MAMH);
+		wcout << L"\n\t\t\tNhập vào mã môn học : "; getline(wcin, ds_monHoc[nMonHoc].MAMH);
 	} while (checkIndifferentSubjectCode(ds_monHoc, nMonHoc));
 	wcout << L"\t\t\tNhập tên môn học: "; getline(wcin, ds_monHoc[nMonHoc].TENMH);
 	wcout << L"\t\t\tNhập vào số tín chỉ lý thuyết: "; wcin >> ds_monHoc[nMonHoc].STCLT;
@@ -155,12 +155,38 @@ void InDSMonHoc(MH ds_monHoc[], int nMonhoc) {
 	for (int i = 0; i < nMonhoc; i++)
 	{
 		SetColorPro(10);
-		wcout << L"\t\t\tMôn học thứ " << i + 1 << " : " << endl;
-		SetColorPro(7);
-		wcout << L"\t\t\t\tMã môn học : " << ds_monHoc[i].MAMH << endl;
-		wcout << L"\t\t\t\tTên môn học : " << ds_monHoc[i].TENMH << endl;
-		wcout << L"\t\t\t\tSố tín chỉ lý thuyết : " << ds_monHoc[i].STCLT << endl;
-		wcout << L"\t\t\t\tSố tín chỉ thực hành : " << ds_monHoc[i].STCTH << endl;
+		wcout << L"\t\t\tMôn học thứ " << i + 1 << " : " << endl;	
+		SetColorPro(3); wcout << L"\t\t\t\tMã môn học : "; SetColorPro(7); wcout << ds_monHoc[i].MAMH << endl;
+		SetColorPro(3); wcout << L"\t\t\t\tTên môn học : "; SetColorPro(7); wcout << ds_monHoc[i].TENMH << endl;
+		SetColorPro(3); wcout << L"\t\t\t\tSố tín chỉ lý thuyết : "; SetColorPro(7); wcout << ds_monHoc[i].STCLT << endl;
+		SetColorPro(3); wcout << L"\t\t\t\tSố tín chỉ thực hành : "; SetColorPro(7);  wcout << ds_monHoc[i].STCTH << endl;
+	}
+}
+
+void PrintAllExistSubJect(MH ds_monHoc[], int nMonhoc) {
+	SetColorPro(10); wcout << L"\t\t\tDanh sách môn học hiện tại :";
+	if (nMonhoc == 0)
+	{
+		wcout << L" Chưa tồn tại môn học nào cả!";
+	}
+	else
+	{
+		SetColorPro(8);
+		int index = 1;
+		wcout << "\n\t";
+		for (size_t i = 0; i <nMonhoc; i++)
+		{
+			if (index == 5) // thêm màu mè thui
+			{
+				wcout << "\n\t";
+				index = 1;
+			}
+			else
+			{
+				index++;
+			}
+			wcout << L"\t" << ds_monHoc[i].TENMH << "(" << ds_monHoc[i].MAMH << ")";
+		}
 	}
 }
 
@@ -352,6 +378,7 @@ void Menu() {
 				break;
 			}
 			PrintAllExistClass(ds_lopHoc, nLopHoc);
+			SetColorPro(15);
 			wstring maLop;
 			wcout << L"\n\t\t\t\tNhập mã lớp mà bạn muốn thêm sinh viên: ";
 			getline(wcin, maLop);
@@ -480,6 +507,8 @@ void Menu() {
 			}
 			else
 			{
+				PrintAllExistSubJect(ds_monHoc, nMonHoc);
+				SetColorPro(15);
 				NhapMonHoc(ds_monHoc, nMonHoc);
 			}
 			break;
@@ -673,6 +702,8 @@ void Menu() {
 						else
 						{
 							SetColorPro(3); wcout << L"\n\t\t\tHọc sinh: "; SetColorPro(7); wcout << k->sv.Ho << " " << k->sv.Ten << "      "; SetColorPro(3); wcout << L" Lớp: "; SetColorPro(7); wcout << ds_lopHoc[i].TenLop;
+							SetColorPro(3); wcout << L"\n\t\t\t\tMã sinh viên: "; SetColorPro(7); wcout << k->sv.MASV;
+							SetColorPro(3); wcout << L"\n\t\t\t\tGiới tính: "; SetColorPro(7); wcout << k->sv.Phai; SetColorPro(3); wcout << L"\tSố điện thoại:"; SetColorPro(7); wcout << k->sv.SDT;
 							for (NODED* u = k->sv.ds_diem.pHead; u != NULL; u = u->pNext)
 							{
 								SetColorPro(9); wcout << L"\n\t\t\t\t• Mã môn: "; SetColorPro(7); wcout << u->diem.MAMH;

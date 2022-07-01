@@ -1,4 +1,4 @@
 CSS,Kinh te quoc dan, 2022
-SS170XXX, Mew mew, Mew, Nam, 665678, VOV, 2, 7.5, SS, 1, 9
-SS157084, A hi, Hi, Nam, 41487329, SS, 1, 9, DM, 1, 8
+SS170XXX, Mew mew, Mew,Nam, 665678, VOV, 2, 7.5, SS, 1, 9
+SS157084, A hi,Hi,Nam, 41487329, SS, 1, 9, DM, 1, 8
 

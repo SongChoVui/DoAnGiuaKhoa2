@@ -18,11 +18,12 @@ void NhapMonHoc(MH ds_monHoc[], int& nMonHoc); // nhập thêm 1 môn học
 
 void InDSMonHoc(MH ds_monHoc[], int nMonhoc);//in danh sách các môn học
 
+void PrintAllExistSubJect(MH ds_monHoc[], int nMonhoc);//in danh sách nhỏ môn học hiện có vs ID
 
 bool IsAnySBOnceTime(SV sv);//kiểm tra xem sinh viên này có bất kì môn nào thi 1 lần không để in sv ra trong câu 8
 
-void DocFileMH_Lop_SV(MH, int&,Lop, int&); // dọc file
+void DocFileMH_Lop_SV(MH ds_monHoc[], int& nMonHoc, Lop ds_lopHoc[], int& nLopHoc); // dọc file
 
-void XuatFile(MH, int, Lop, int); // xuất ds môn, ds lớp ra file
+void XuatFile(MH ds_monHoc[], int nMonHoc, Lop ds_lopHoc[], int nLopHoc); // xuất ds môn, ds lớp ra file
 
 void Menu(); // menu
