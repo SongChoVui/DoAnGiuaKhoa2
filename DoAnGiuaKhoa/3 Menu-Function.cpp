@@ -654,17 +654,17 @@ void Menu() {
 							}
 						}
 					}
+					break;
 				}
-				if (isFinded == false)
-				{
-					SetColorPro(4);
-					wcout << L"\n\t\t\t\tKhông tìm thấy sinh viên nào hợp với yêu cầu!";
-				}
-				SetColorPro(8);
-				wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
-				_getch();
-				break;
 			}
+			if (isFinded == false)
+			{
+				SetColorPro(4);
+				wcout << L"\n\t\t\t\tKhông tìm thấy sinh viên nào hợp với yêu cầu!";
+			}
+			SetColorPro(8);
+			wcout << L"\n\t\t\t\t(Ấn phím bất kì để tiếp tục)";
+			_getch();
 			break;
 		}
 		case 9: {
